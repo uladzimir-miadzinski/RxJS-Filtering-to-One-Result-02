@@ -1,4 +1,4 @@
-# rxjs-create
+# RxJS: Filtering to One Result
 
 Install Dependencies
 > npm install
