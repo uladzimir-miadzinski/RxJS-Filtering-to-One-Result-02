@@ -28,15 +28,14 @@ import { from, fromEvent, of } from 'rxjs';
     // run(stream$, { outputMethod: "console"});
 })();
 
-// Task 4. min()
-// Создайте массив из 3 случайных чисел. Выведите массив в консоль.
-// Создайте поток из этого массива. Получите минимальное число из потока 
+// Task 4. min() // Vitalii Puzakov
+// Создайте поток слов из предложения 'Мягкое слово кости не ломит'. Найдите минимальную длину слова в предложении.
 (function task4() {
-    // const stream$ = 
+    const string = 'Мягкое слово кости не ломит';
+    // const source$ = 
 
     // run(stream$);
 })();
-
 
 
 // Task 5. max()

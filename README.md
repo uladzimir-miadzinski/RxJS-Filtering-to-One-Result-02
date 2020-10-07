@@ -5,3 +5,6 @@ Install Dependencies
 
 Run the Project
 > npm start
+
+Contributors:
+> Vitalii Puzakov <Vitalii_Puzakov@epam.com>)
