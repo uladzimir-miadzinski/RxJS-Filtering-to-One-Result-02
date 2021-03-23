@@ -28,7 +28,7 @@ import { from, fromEvent, of } from 'rxjs';
     // run(stream$, { outputMethod: "console"});
 })();
 
-// Task 4. min() // Vitalii Puzakov
+// Task 4. min() (Vitalii Puzakov)
 // Создайте поток слов из предложения 'Мягкое слово кости не ломит'. Найдите минимальную длину слова в предложении.
 (function task4() {
     const string = 'Мягкое слово кости не ломит';
@@ -47,9 +47,9 @@ import { from, fromEvent, of } from 'rxjs';
     // run(stream$);
 })();
 
-// Task 6. find()
-// Создайте поток объектов с двумя свойствами: id, name.
-// Получите объект с id = 3  
+// Task 6. find() (Andrii Olepir)
+// Создайте поток, используя ajax(`https://jsonplaceholder.typicode.com/users`)
+// Получите первого пользователя, email которого, заканчивается на 'biz'  
 (function task6() {
     // const stream$ = 
 
@@ -74,6 +74,9 @@ import { from, fromEvent, of } from 'rxjs';
     
     // run(stream$);
 })();
+
+// Task 9. ignoreElements()
+// Придумать задачу и реализовать
 
 
 export function runner() {}

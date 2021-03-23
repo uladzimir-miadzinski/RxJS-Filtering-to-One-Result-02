@@ -7,4 +7,5 @@ Run the Project
 > npm start
 
 Contributors:
-> Vitalii Puzakov <Vitalii_Puzakov@epam.com>)
+- Andrii_Olepir <Andrii_Olepir@epam.com>
+- Vitalii Puzakov <Vitalii_Puzakov@epam.com>
