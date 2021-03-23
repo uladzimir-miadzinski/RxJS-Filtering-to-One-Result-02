@@ -3,8 +3,8 @@
 //     thisArg?: any
 // ): OperatorFunction<T, T | undefined>
 
-import { of } from 'rxjs';
-import { find } from 'rxjs/operators';
+import { from, of } from 'rxjs';
+import { find, pluck } from 'rxjs/operators';
 import { run } from '../03-utils';
 
 // find searches for the first item in the source Observable
@@ -22,4 +22,39 @@ export function findDemo2() {
   const stream$ = source$.pipe(find(x => x > 40));
 
   // run(stream$); // undefined
+}
+
+// find + object (Maksym Koval1)
+// Дано поток пользователей желающих зарегестрироваться на веббинар Виталия, 
+// однако к-во мест ограничено. На веббинар может попасть только 1 человек уровня senior.
+// Просмотреть все заявки и после того, как встретится первый разработчик уровня senior - 
+// закрыть регистрацию на веббинар (поток) и вывести его имя
+export function findDemo3() {
+  const searchTitle = 'Senior';
+  const candidates$ = from([
+      {
+          title: 'Junior',
+          name: 'Andrii',
+      },
+      {
+          title: 'Junior',
+          name: 'Anna',
+      },
+      {
+          title: 'Senior',
+          name: 'Gorge',
+      },
+      {
+          title: 'Middle',
+          name: 'Greg',
+      },
+  ]);
+    
+    
+  const stream$ = candidates$.pipe(
+      find(({ title }) => title === searchTitle),
+      pluck('name'),
+  );
+    
+  // run(stream$);
 }

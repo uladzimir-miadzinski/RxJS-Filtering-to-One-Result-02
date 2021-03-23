@@ -8,4 +8,5 @@ Run the Project
 
 Contributors:
 - Andrii_Olepir <Andrii_Olepir@epam.com>
+- Maksym Koval1 <Maksym_Koval1@epam.com>
 - Vitalii Puzakov <Vitalii_Puzakov@epam.com>
