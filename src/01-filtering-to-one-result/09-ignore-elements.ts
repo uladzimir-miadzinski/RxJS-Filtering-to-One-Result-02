@@ -15,7 +15,7 @@ export function ignoreElementsDemo1() {
   const stream$ = source$.pipe(ignoreElements());
 
   //output: "Complete!"
-  //   run(stream$);
+    // run(stream$);
 }
 
 // pass only error
@@ -32,5 +32,5 @@ export function ignoreElementsDemo2() {
   const stream$ = source$.pipe(ignoreElements());
 
   //output: "Error: Error at 4"
-//   run(stream$);
+  // run(stream$);
 }

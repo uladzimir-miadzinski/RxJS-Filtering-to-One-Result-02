@@ -6,3 +6,4 @@ export * from './05-max';
 export * from './06-find';
 export * from './07-find-index';
 export * from './08-single';
+export * from './09-ignore-elements';
