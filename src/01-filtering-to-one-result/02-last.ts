@@ -3,8 +3,7 @@
 //     defaultValue?: D
 // ): OperatorFunction<T, T | D>
 
-import { range, timer } from 'rxjs';
-import { last, timeout } from 'rxjs/operators';
+import { range, timer, last, timeout, EMPTY, of } from 'rxjs';
 import { run } from '../03-utils';
 
 // options for range() function
@@ -12,37 +11,45 @@ const start = 1;
 const count = 100;
 
 // emit only the last value
-export function lastDemo1() {
+(function lastDemo1() {
   const source$ = range(start, count);
   const stream$ = source$.pipe(last());
   // run(stream$);
-}
+})();
 
 // last + predicate function
-export function lastDemo2() {
+(function lastDemo2() {
   const source$ = range(start, count);
   const stream$ = source$.pipe(last(n => n < 50));
   // run(stream$);
-}
+})();
 
 // no value causes an error
-export function lastDemo3() {
+(function lastDemo3() {
   const source$ = range(start, count);
   const stream$ = source$.pipe(last(n => n > 500));
 
   // output: Error: EmptyError: no elements in sequence
   // run(stream$);
-}
+})();
 
 // if no value, use default
-export function lastDemo4() {
+(function lastDemo4() {
   const source$ = range(start, count);
   const stream$ = source$.pipe(last(n => n > 500, 1000));
   // run(stream$);
-}
+})();
+
+
+// empty stream, no predicate, default value
+(function lastDemo5() {
+  const source$ = EMPTY;
+  const stream$ = source$.pipe(last(null, 1000));
+  // run(stream$);
+})();
 
 // infinite stream, no value
-export function lastDemo5() {
+(function lastDemo6() {
   const dueTime = 0;
   const period = 100;
   const source$ = timer(dueTime, period);
@@ -51,4 +58,25 @@ export function lastDemo5() {
     timeout(5000) // <-- causes error after 5s
   );
   // run(stream$);
-}
+})();
+
+// predicate is a type guard, no default value, value doesn't exist => EmptyError
+(function lastDemo7() {
+  const source$ = range(start, count);
+  const stream$ = source$.pipe(last((n: number | string): n is string => typeof n === 'string'));
+  // run(stream$);
+})();
+
+// predicate is a type guard + default value, value doesn't exist
+(function lastDemo8() {
+  const source$ = range(start, count);
+  const stream$ = source$.pipe(last((n: number | string): n is string => typeof n === 'string', 1000));
+  // run(stream$);
+})();
+
+// predicate is a type guard + default value, value exists
+(function lastDemo9() {
+  const source$ = of(1, 2, 3, 4, 5, 'Hello', 6);
+  const stream$ = source$.pipe(last((n: number | string): n is string => typeof n === 'string', 1000));
+  // run(stream$);
+})();
