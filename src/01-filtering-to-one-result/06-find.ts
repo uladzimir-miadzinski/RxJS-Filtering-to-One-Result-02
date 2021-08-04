@@ -3,8 +3,7 @@
 //     thisArg?: any
 // ): OperatorFunction<T, T | undefined>
 
-import { from, of } from 'rxjs';
-import { find, pluck } from 'rxjs/operators';
+import { from, of, find, map } from 'rxjs';
 import { run } from '../03-utils';
 
 // find searches for the first item in the source Observable
@@ -53,7 +52,7 @@ export function findDemo3() {
     
   const stream$ = candidates$.pipe(
       find(({ title }) => title === searchTitle),
-      pluck('name'),
+      map(o => o.name)
   );
     
   // run(stream$);

@@ -3,8 +3,7 @@
 //     thisArg?: any
 // ): OperatorFunction<T, number>
 
-import { of } from 'rxjs';
-import { findIndex } from 'rxjs/operators';
+import { of, findIndex } from 'rxjs';
 import { run } from '../03-utils';
 
 // emit index of element which matches the condition

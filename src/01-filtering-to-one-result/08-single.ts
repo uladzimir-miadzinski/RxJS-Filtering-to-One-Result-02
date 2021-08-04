@@ -2,8 +2,7 @@
 //     predicate?: (value: T, index: number, source: Observable<T>) => boolean
 // ): MonoTypeOperatorFunction<T>
 
-import { range, EMPTY } from 'rxjs';
-import { single } from 'rxjs/operators';
+import { range, EMPTY, single } from 'rxjs';
 import { run } from '../03-utils';
 
 // options for range() function

@@ -1,7 +1,6 @@
 // ignoreElements(): OperatorFunction<any, never>
 
-import { throwError, of, range } from 'rxjs';
-import { ignoreElements, mergeMap } from 'rxjs/operators';
+import { throwError, of, range, ignoreElements, mergeMap } from 'rxjs';
 import { run } from './../03-utils';
 
 // options for range() function
@@ -23,7 +22,7 @@ export function ignoreElementsDemo2() {
   const source$ = range(start, count).pipe(
     mergeMap(val => {
       if (val === 4) {
-        return throwError(`Error at ${val}`);
+        return throwError(() => `Error at ${val}`);
       }
       return of(val);
     })

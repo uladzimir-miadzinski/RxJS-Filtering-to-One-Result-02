@@ -2,8 +2,7 @@
 //     comparer?: (x: T, y: T) => number
 // ): MonoTypeOperatorFunction<T>
 
-import { Observable, of, timer } from 'rxjs';
-import { min, tap, timeout } from 'rxjs/operators';
+import { Observable, of, timer, min, tap, timeout } from 'rxjs';
 import { run } from '../03-utils';
 
 // emit min value from series of numbers
