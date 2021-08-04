@@ -1,6 +1,5 @@
 import { addItem, run } from './../03-utils';
-import { first, last, elementAt, min, max, find, findIndex, single } from 'rxjs/operators';
-import { from, fromEvent, of } from 'rxjs';
+import { from, fromEvent, of, first, last, elementAt, min, max, find, findIndex, single } from 'rxjs';
 
 // Task 1. first()
 // Создайте поток объектов с двумя свойствами: action и priority
