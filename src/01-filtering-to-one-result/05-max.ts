@@ -2,7 +2,7 @@
 //     comparer?: (x: T, y: T) => number
 // ): MonoTypeOperatorFunction<T>
 
-import { of, timer } from 'rxjs';
+import { Observable, of, timer } from 'rxjs';
 import { max, tap, timeout } from 'rxjs/operators';
 import { run } from '../03-utils';
 
@@ -21,7 +21,7 @@ export function maxDemo2() {
     name: string;
   }
 
-  const source$ = of<Person>(
+  const source$: Observable<Person> = of(
     { age: 7, name: 'Anna' },
     { age: 5, name: 'Boris' },
     { age: 9, name: 'Clara' }
