@@ -6,15 +6,15 @@ import { Observable, of, timer, max, tap, timeout } from 'rxjs';
 import { run } from '../03-utils';
 
 // emit max value from series of numbers
-export function maxDemo1() {
+(function maxDemo1() {
   const source$ = of(5, 4, 7, 2, 8);
   const stream$ = source$.pipe(max());
 
   // run(stream$);
-}
+})();
 
 // Use a comparer function to get the max item
-export function maxDemo2() {
+(function maxDemo2() {
   interface Person {
     age: number;
     name: string;
@@ -31,10 +31,10 @@ export function maxDemo2() {
   );
 
   // run(stream$);
-}
+})();
 
 // doesn't work with infinite series of numbers
-export function maxDemo3() {
+(function maxDemo3() {
   const source$ = timer(0, 1000);
   const stream$ = source$.pipe(
     tap(val => console.log('Current Value: ', val)),
@@ -43,4 +43,4 @@ export function maxDemo3() {
   );
 
   // run(stream$);
-}
+})();

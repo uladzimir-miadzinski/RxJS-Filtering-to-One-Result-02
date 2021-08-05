@@ -6,15 +6,15 @@ import { Observable, of, timer, min, tap, timeout } from 'rxjs';
 import { run } from '../03-utils';
 
 // emit min value from series of numbers
-export function minDemo1() {
+(function minDemo1() {
   const source$ = of(5, 4, 7, 2, 8);
   const stream$ = source$.pipe(min());
 
   // run(stream$);
-}
+})();
 
 // Use a comparer function to get the minimal item
-export function minDemo2() {
+(function minDemo2() {
   interface Person {
     age: number;
     name: string;
@@ -31,10 +31,10 @@ export function minDemo2() {
   );
 
   // run(stream$);
-}
+})();
 
 // doesn't work with infinite series of numbers
-export function minDemo3() {
+(function minDemo3() {
   const source$ = timer(0, 1000);
   const stream$ = source$.pipe(
     tap(val => console.log('Current Value: ', val)),
@@ -43,4 +43,4 @@ export function minDemo3() {
   );
 
   // run(stream$);
-}
+})();
