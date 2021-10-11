@@ -31,7 +31,6 @@ import { run } from '../03-utils';
 })();
 
 // index doesn't exist, use default value and complete
-// BUT now throw unhandled exception
 (function elementAtDemo4() {
   const source$ = of(5, 4, 7, 2, 8);
   const stream$ = source$.pipe(elementAt(10, 100));
