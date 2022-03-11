@@ -24,10 +24,10 @@ import { run } from '../03-utils';
 })();
 
 // find + object (Maksym Koval1)
-// Дано поток пользователей желающих зарегестрироваться на веббинар Виталия, 
-// однако к-во мест ограничено. На веббинар может попасть только 1 человек уровня senior.
-// Просмотреть все заявки и после того, как встретится первый разработчик уровня senior - 
-// закрыть регистрацию на веббинар (поток) и вывести его имя
+// There is an observable of users who want to register for Vitaly's webinar,
+// however, the number of places is limited. Only 1 senior level person can enter the webinar.
+// View all requests and after the first senior developer meets -
+// close registration for the webinar (observable) and display its name
 (function findDemo3() {
   const searchTitle = 'Senior';
   const candidates$ = from([
