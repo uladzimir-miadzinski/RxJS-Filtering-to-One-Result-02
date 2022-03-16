@@ -1,5 +1,6 @@
 import { addItem, run } from './../03-utils';
 import { from, fromEvent, of, first, last, elementAt, min, max, find, findIndex, single } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
 
 // Task 1. first()
 // RU: Создайте поток объектов с двумя свойствами: action и priority
