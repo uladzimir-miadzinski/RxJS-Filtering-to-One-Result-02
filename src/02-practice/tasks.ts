@@ -1,5 +1,5 @@
 import { addItem, run } from './../03-utils';
-import { from, fromEvent, of, first, last, elementAt, min, max, find, findIndex, single } from 'rxjs';
+import { from, fromEvent, of, first, last, elementAt, min, max, find, findIndex, single, catchError, map, ignoreElements, tap } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
 // Task 1. first()
@@ -20,7 +20,7 @@ import { ajax } from 'rxjs/ajax';
 // Get the last word that contains 2 characters
 (function task2(): void {
     // const stream$ = 
-    
+
     // run(stream$);
 })();
 
@@ -30,7 +30,7 @@ import { ajax } from 'rxjs/ajax';
 // EN: Create an observable of document click event. Get the second click event object.
 (function task3(): void {
     // const stream$ = 
-    
+
     // run(stream$, { outputMethod: "console"});
 })();
 
@@ -80,20 +80,48 @@ import { ajax } from 'rxjs/ajax';
 })();
 
 // Task 8. single()
-// RU: Создайте поток объектов с двумя свойствами: title, priority так, чтобы некоторые объекты
-// имели одинаковые значения title
-// Получите объект у которого title = 'Learn RxJS', если он единственный в потоке
-// EN: Create an observable of objects with two properties: title, priority so that some objects
-// have the same title values
-// Get the object with title = 'Learn RxJS' if it's the only one object in the stream
+// Приложение может создавать в какой-то момент очередь из ошибок, 
+// и в этом случае мы должны понять что у нас много таких ошибок и навигировать пользователя на страницу, 
+// на которой написано что слишком много ошибок такого-то типа.
+// В случае если была выдана одна ошибка приложением, 
+// то отобразить страницу отображающую полную информацию по конкретной ошибке
+// подобный подход используется в эффектах ngrx и используется специальный сервис для перенаправления пользователя куда-либо
 (function task8() {
-    // const stream$ = 
-    
-    // run(stream$);
+    const navigateToMultipleErrorsFoundPageAction = (msg) => {
+        return of(`Navigate to error page with message "Multiple errors of type ${msg.split(':')[0]} were triggered"`);
+    }
+    const navigateToSingleErrorFoundPageAction = (err) => {
+        return of(`Navigate to error page with message "${err}"`);
+    }
+
+    const applicationErrorsStream$ = of(
+        new Error('Refer1enceError: dog is not defined'),
+        new Error('ReferenceError: cat is not defined'),
+        new Error('Unhandled user action')
+    ).pipe(
+        single((err) => err.message.startsWith('ReferenceError')),
+        map((err) => err.message),
+        tap(navigateToSingleErrorFoundPageAction),
+        catchError(navigateToMultipleErrorsFoundPageAction)
+    );
+
+    // run(applicationErrorsStream$);
 })();
 
 // Task 9. ignoreElements()
-// RU: Придумать задачу и реализовать
-// EN: Come up with a task and implement it
+// была такая задача на практика разлогинить пользователя на всех поддоменах 
+// в случае если пользователь сделает логаут на каком-то из них
+// и по сути нам важно будет ли это сделано успешно или не успешно
+(function task9() {
+    const logoutFromApp = ajax('https://app.com/logout');
+    const logoutFromMailApp = ajax('https://mail.app.com/logout');
+    const logoutFromResearchApp = ajax('https://research.app.com/logout');
 
-export function runner() {}
+    const applicationErrorsStream$ = of(logoutFromApp, logoutFromMailApp, logoutFromResearchApp).pipe(
+        ignoreElements()
+    );
+
+    // run(applicationErrorsStream$);
+})();
+
+export function runner() { }
